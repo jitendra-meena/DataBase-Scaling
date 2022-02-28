@@ -75,38 +75,38 @@ WSGI_APPLICATION = 'DBScale.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-    
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'DBscaling', 
-        'USER': 'postgres', 
-        'PASSWORD': os.environ.get("RS_DB_PWD"),
-        'HOST': 'localhost', 
-        'PORT': '5432',
-    },
-    'replica': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'replica',
-        'USER': 'postgres',
-        'PASSWORD':os.environ.get("RS_DB_PWD"),
-        'HOST': 'localhost'
-    },
-    'slavedb': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'slavedb',
-        'USER': 'postgres',
-        'PASSWORD':os.environ.get("RS_DB_PWD"),
-        'HOST': 'localhost'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
+    
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'DBscaling', 
+#         'USER': 'postgres', 
+#         'PASSWORD': os.environ.get("RS_DB_PWD"),
+#         'HOST': 'localhost', 
+#         'PORT': '5432',
+#     },
+#     'replica': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'replica',
+#         'USER': 'postgres',
+#         'PASSWORD':os.environ.get("RS_DB_PWD"),
+#         'HOST': 'localhost'
+#     },
+#     'slavedb': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'slavedb',
+#         'USER': 'postgres',
+#         'PASSWORD':os.environ.get("RS_DB_PWD"),
+#         'HOST': 'localhost'
+#     }
+# }
 
 DATABASE_ROUTERS = [
     'core.router.ReplicationRouter',
