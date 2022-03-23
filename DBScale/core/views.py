@@ -5,11 +5,30 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.generics import ListCreateAPIView
 from .models import Customer,CustomerSupport
+import logging
+from drf_yasg import openapi
+from rest_framework_swagger.views import get_swagger_view
+from drf_yasg.views import get_schema_view
+from rest_framework import permissions
 
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Jaseci API",
+        default_version='v1',
+        description="Welcome to the world of Jaseci",
+        terms_of_service="https://www.jaseci.org",
+        contact=openapi.Contact(email="jason@jaseci.org"),
+        license=openapi.License(name="Awesome IP"),
+   ),
+   public=True,
+   permission_classes=[permissions.AllowAny],
+)
 class AddCustomer(APIView): 
   def get(self,request):
-    customer = CustomerSupport.objects.using('replica').all()
+    customer = CustomerSupport.objects.all()
     serializer = AddCustomerSerializer(customer,many=True)
+    logging.info("User Data Created")
     return Response(serializer.data) 
   
   def post(self, request):
@@ -20,6 +39,7 @@ class AddCustomer(APIView):
       
       print("DataBase Scaling",serializer)
       return Response(serializer.data, status=status.HTTP_200_OK)
+    logging.warning("Data Not Valid Error")
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class Customer(ListCreateAPIView):
