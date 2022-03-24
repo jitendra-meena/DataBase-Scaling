@@ -36,3 +36,5 @@ class Bank(models.Model):
 
   def __str__(self) -> str:
       return self.branch_name     
+
+      
