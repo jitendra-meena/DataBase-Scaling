@@ -24,6 +24,8 @@ schema_view = get_schema_view(
    public=True,
    permission_classes=[permissions.AllowAny],
 )
+
+# TEST DataBase Scaling ...
 class AddCustomer(APIView): 
   def get(self,request):
     customer = CustomerSupport.objects.all()
@@ -42,6 +44,7 @@ class AddCustomer(APIView):
     logging.warning("Data Not Valid Error")
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+# Add Multiples users in same time using this api
 class Customer(ListCreateAPIView):
   queryset = CustomerSupport.objects.all()
   serializer_class = CustomerSerializer
