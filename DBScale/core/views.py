@@ -37,9 +37,7 @@ class AddCustomer(APIView):
     serializer = AddCustomerSerializer(data=request.data)
     print(serializer)
     if serializer.is_valid():
-      serializer.save()
-      
-      print("DataBase Scaling",serializer)
+      serializer.save() 
       return Response(serializer.data, status=status.HTTP_200_OK)
     logging.warning("Data Not Valid Error")
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
