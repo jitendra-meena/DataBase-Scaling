@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
-    'rest_framework'
+    'rest_framework',
+    'drf_yasg'
 ]
 
 MIDDLEWARE = [
@@ -75,43 +76,43 @@ WSGI_APPLICATION = 'DBScale.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-    
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'DBscaling', 
-        'USER': 'postgres', 
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost', 
-        'PORT': '5432',
-    },
-    'replica': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'replica',
-        'USER': 'postgres',
-        'PASSWORD':'postgres',
-        'HOST': 'localhost'
-    },
-    'slavedb': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'slavedb',
-        'USER': 'postgres',
-        'PASSWORD':'postgres',
-        'HOST': 'localhost'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
+    
 }
+# Multiples DataBases 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'DBscaling', 
+#         'USER': 'postgres', 
+#         'PASSWORD': os.environ.get("RS_DB_PWD"),
+#         'HOST': 'localhost', 
+#         'PORT': '5432',
+#     },
+#     'replica': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'replica',
+#         'USER': 'postgres',
+#         'PASSWORD':os.environ.get("RS_DB_PWD"),
+#         'HOST': 'localhost'
+#     },
+#     'slavedb': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'slavedb',
+#         'USER': 'postgres',
+#         'PASSWORD':os.environ.get("RS_DB_PWD"),
+#         'HOST': 'localhost'
+#     }
+# }
 
-DATABASE_ROUTERS = [
-    'core.router.ReplicationRouter',
-    'core.router.ReplicationRouterSlave'
-    ]
+# DATABASE_ROUTERS = [
+#     'core.router.ReplicationRouter',
+#     'core.router.ReplicationRouterSlave'
+#     ]
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -155,3 +156,33 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# DataFlair #Logging Information
+LOGGING = {
+#     'version': 1,
+#     # Version of logging
+#     'disable_existing_loggers': False,
+#     #disable logging 
+#     # Handlers #############################################################
+#     'handlers': {
+#         'file': {
+#             'level': 'DEBUG',
+#             'class': 'logging.FileHandler',
+#             'filename': 'dataflair-debug.log',
+#         },
+# ########################################################################
+#         'console': {
+#             'class': 'logging.StreamHandler',
+#         },
+#     },
+#     # Loggers ####################################################################
+#     'loggers': {
+#         'django': {
+#             'handlers': ['file', 'console'],
+#             'level': 'DEBUG',
+#             'propagate': True,
+#             'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG')
+#         },
+#     },
+}
