@@ -39,3 +39,9 @@ The following is an example settings.py snippet defining two databases – a def
         'HOST': 'localhost'
     }
 }
+
+
+# Migrate Database
+
+python manage.py migrate 
+python manage.py migrate --database=user
