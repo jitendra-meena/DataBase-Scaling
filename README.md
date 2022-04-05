@@ -106,3 +106,20 @@ DATABASE_ROUTERS = [
     'core.router.ReplicationRouterAdmin'
 ]
 ```
+
+# Selecting a database
+
+You can select the database for a QuerySet at any point in the QuerySet “chain.” Call using() on the QuerySet to get another QuerySet that uses the specified database.
+
+using() takes a single argument: the alias of the database on which you want to run the query.
+
+For Example:
+
+>>> # This will run on the 'default' database.
+>>> CustomerInformation.objects.all()
+
+>>> # This will fetch the details using 'user' DataBase
+>>> CustomerInformation.objects.using('user').all()
+
+>>> # This will run on the 'admin' database.
+>>> CustomerSupport.objects.using('admin').all()
