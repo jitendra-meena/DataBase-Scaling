@@ -9,8 +9,9 @@ Scaling in DBMS is the ability to expand the capacity of a database system in or
 3. Create your database servers
 
 # Install Dependencies
-
-   pip install -r requirements.txt
+  ```bash
+  pip install -r requirements.txt
+  ```
 
 
 # Defining your databases
