@@ -8,6 +8,10 @@ Scaling in DBMS is the ability to expand the capacity of a database system in or
 2. Create a Django project
 3. Create your database servers
 
+# Install Dependencies
+
+pip install -r requirements.txt
+
 
 # Defining your databases
 The first step to using more than one database with Django is to tell Django about the database servers you’ll be using. This is done using the 'DATABASES' setting. Databases can have any alias you choose. However, the alias default has special significance. Django uses the database with the alias of default when no other database has been selected.
