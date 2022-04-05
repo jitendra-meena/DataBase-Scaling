@@ -96,3 +96,13 @@ class ReplicationRouterAdmin:
             return db == 'admin'
         return None
 ```  
+
+# Connecting the routers
+Database routers are installed using the DATABASE_ROUTERS setting. This setting defines a list of class names, each specifying a router that should be used by the master router.
+
+```bash
+DATABASE_ROUTERS = [
+    'core.router.ReplicationRouterUser',
+    'core.router.ReplicationRouterAdmin'
+]
+```
