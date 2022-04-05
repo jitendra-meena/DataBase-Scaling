@@ -43,5 +43,6 @@ The following is an example settings.py snippet defining two databases – a def
 
 # Migrate Database
 
-python manage.py migrate 
-python manage.py migrate --database=user
+  python manage.py migrate 
+  
+  python manage.py migrate --database=user
