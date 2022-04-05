@@ -115,7 +115,8 @@ using() takes a single argument: the alias of the database on which you want to 
 
 For Example:
 
->>> # This will run on the 'default' database.
+```bash
+>>> This will run on the 'default' database.
 >>> CustomerInformation.objects.all()
 
 >>> # This will fetch the details using 'user' DataBase
@@ -123,3 +124,4 @@ For Example:
 
 >>> # This will run on the 'admin' database.
 >>> CustomerSupport.objects.using('admin').all()
+```
