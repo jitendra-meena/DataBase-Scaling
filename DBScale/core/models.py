@@ -1,7 +1,7 @@
 from django.db import models
 
 
-
+# For Customer Model for test DataBase Scaling 
 class Customer(models.Model):
   name = models.CharField(max_length=20)
   address = models.CharField(max_length=50)
