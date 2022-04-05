@@ -119,9 +119,9 @@ For Example:
 >>> This will run on the 'default' database.
 >>> CustomerInformation.objects.all()
 
->>> # This will fetch the details using 'user' DataBase
+>>> This will fetch the details using 'user' DataBase
 >>> CustomerInformation.objects.using('user').all()
 
->>> # This will run on the 'admin' database.
+>>> This will run on the 'admin' database.
 >>> CustomerSupport.objects.using('admin').all()
 ```
