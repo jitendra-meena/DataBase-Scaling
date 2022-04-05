@@ -2,39 +2,39 @@ from django.conf import settings
 
 
 
-class ReplicationRouter:
+class ReplicationRouterUser:
     route_app_labels = {'core'}
 
     def db_for_read(self, model, **hints):
         if model._meta.app_label in self.route_app_labels:
-            return 'replica'
+            return 'user'
         return None
 
     def db_for_write(self, model, **hints):
         if model._meta.app_label in self.route_app_labels:
-            return 'replica'
+            return 'user'
         return None
 
     def allow_migrate(self, db, app_label, model_name=None, **hints):
         if app_label in self.route_app_labels:
-            return db == 'replica'
+            return db == 'user'
         return None
 
 
-class ReplicationRouterSlave:
+class ReplicationRouterAdmin:
     route_app_labels = {'core'}
 
     def db_for_read(self, model, **hints):
         if model._meta.app_label in self.route_app_labels:
-            return 'slavedb'
+            return 'admin'
         return None
 
     def db_for_write(self, model, **hints):
         if model._meta.app_label in self.route_app_labels:
-            return 'slavedb'
+            return 'admin'
         return None
 
     def allow_migrate(self, db, app_label, model_name=None, **hints):
         if app_label in self.route_app_labels:
-            return db == 'slavedb'
+            return db == 'admin'
         return None

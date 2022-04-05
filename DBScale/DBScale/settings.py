@@ -76,43 +76,43 @@ WSGI_APPLICATION = 'DBScale.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-    
-}
-# Multiples DataBases 
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'DBscaling', 
-#         'USER': 'postgres', 
-#         'PASSWORD': os.environ.get("RS_DB_PWD"),
-#         'HOST': 'localhost', 
-#         'PORT': '5432',
-#     },
-#     'replica': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'replica',
-#         'USER': 'postgres',
-#         'PASSWORD':os.environ.get("RS_DB_PWD"),
-#         'HOST': 'localhost'
-#     },
-#     'slavedb': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'slavedb',
-#         'USER': 'postgres',
-#         'PASSWORD':os.environ.get("RS_DB_PWD"),
-#         'HOST': 'localhost'
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
-# }
 
-# DATABASE_ROUTERS = [
-#     'core.router.ReplicationRouter',
-#     'core.router.ReplicationRouterSlave'
-#     ]
+# }
+# Multiples DataBases
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'DBscaling',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    },
+    'user': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'UserDB',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'localhost'
+    },
+    'admin': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'AdminDB',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'localhost'
+    }
+}
+
+DATABASE_ROUTERS = [
+    'core.router.ReplicationRouterUser',
+    'core.router.ReplicationRouterAdmin'
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -160,29 +160,29 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # DataFlair #Logging Information
 LOGGING = {
-#     'version': 1,
-#     # Version of logging
-#     'disable_existing_loggers': False,
-#     #disable logging 
-#     # Handlers #############################################################
-#     'handlers': {
-#         'file': {
-#             'level': 'DEBUG',
-#             'class': 'logging.FileHandler',
-#             'filename': 'dataflair-debug.log',
-#         },
-# ########################################################################
-#         'console': {
-#             'class': 'logging.StreamHandler',
-#         },
-#     },
-#     # Loggers ####################################################################
-#     'loggers': {
-#         'django': {
-#             'handlers': ['file', 'console'],
-#             'level': 'DEBUG',
-#             'propagate': True,
-#             'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG')
-#         },
-#     },
+    #     'version': 1,
+    #     # Version of logging
+    #     'disable_existing_loggers': False,
+    #     #disable logging
+    #     # Handlers #############################################################
+    #     'handlers': {
+    #         'file': {
+    #             'level': 'DEBUG',
+    #             'class': 'logging.FileHandler',
+    #             'filename': 'dataflair-debug.log',
+    #         },
+    # ########################################################################
+    #         'console': {
+    #             'class': 'logging.StreamHandler',
+    #         },
+    #     },
+    #     # Loggers ####################################################################
+    #     'loggers': {
+    #         'django': {
+    #             'handlers': ['file', 'console'],
+    #             'level': 'DEBUG',
+    #             'propagate': True,
+    #             'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG')
+    #         },
+    #     },
 }
