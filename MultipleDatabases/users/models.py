@@ -9,3 +9,8 @@ class User(models.Model):
 
   # def __str__(self):
   #   self.username
+
+class Company(models.Model):
+  company_name = models.CharField(max_length=20)
+
+ 

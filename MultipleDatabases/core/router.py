@@ -1,7 +1,5 @@
 from django.conf import settings
 
-
-
 class ReplicationRouterUser:
     route_app_labels = {'users'}
 

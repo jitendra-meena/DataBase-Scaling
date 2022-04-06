@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
-from .serializers import AddCustomerSerializer, CustomerSerializer
+from .serializers import AddCustomerSerializer, CustomerSerializer,UserDetailsSerializer
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.generics import ListCreateAPIView
@@ -10,7 +10,7 @@ from drf_yasg import openapi
 from rest_framework_swagger.views import get_swagger_view
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
-
+from users.models import User,Company
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -59,3 +59,12 @@ class Customer(ListCreateAPIView):
         customers = CustomerSupport.objects.all()
         serializer = CustomerSerializer(customers, many=True)
         return Response({'msg': 'Custom List', 'data': serializer.data})
+
+
+class UserDetails(APIView):
+    def get(self, request, *args, **kwargs):
+        user_obj = Company.objects.using('user').all()
+        serializer = UserDetailsSerializer(user_obj,many=True)
+        return Response(serializer.data)
+
+        
