@@ -133,6 +133,7 @@ For Example:
 >>> This will run on the 'user' database. For Delete user details.
 >>> u = User.objects.using('user').get(username='fred')
 >>> u.delete()
+
 ```
 
 
