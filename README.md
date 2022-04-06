@@ -126,6 +126,9 @@ For Example:
 
 >>> This will run on the 'admin' database.
 >>> CustomerSupport.objects.using('admin').all()
+
+>>> This will run on the 'user' database. For Save details into User DataBase
+>>> user_obj.save(using='user')
 ```
 
 
