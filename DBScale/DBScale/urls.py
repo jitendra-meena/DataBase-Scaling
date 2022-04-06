@@ -19,6 +19,7 @@ from django.urls import path,include,re_path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('core.urls')),
+    path('users/',include('users.urls')),
     # re_path(r'^doc(?P<format>\.json|\.yaml)$',
     #         schema_view.without_ui(cache_timeout=0), name='schema-json'),  #<-- Here
     # path('doc/', schema_view.with_ui('swagger', cache_timeout=0),
