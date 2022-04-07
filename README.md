@@ -8,7 +8,7 @@ Scaling in DBMS is the ability to expand the capacity of a database system in or
 
 1. Create your virtual environment
 2. Create a Django project
-3. Create your database servers
+3. git clone remote url
 
 # Install Dependencies
   ```bash
